@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        body{
+            background-color: #FAF7F0;
+        }
+
+
+        #main-container{
+            background-color: #BCCEF8;
+            padding: 15px;
+            border-radius: 8px;
+            
+            width: 500px;
+            height: 650px;
+
+            margin: auto;
+        }
+
+        #display-area{
+            background-color: #CDFCF6;
+            border-radius: 10px;
+
+            height: 135px;
+            margin-bottom: 15px;
+
+            text-align: end;
+            font-size: xx-large;
+        }
+
+        #button-area{
+            background-color: #98A8F8;
+            border-radius: 5px;
+        }
+
+        #row1{
+            display: flex;
+            flex-direction: row;
+        }
+        
+        #row2{
+            display: flex;
+            flex-direction: row;
+        }
+        
+        #row3{
+            display: flex;
+            flex-direction: row;
+        }
+        
+        #row4{
+            display: flex;
+            flex-direction: row;
+        }
+        
+        #row5{
+            display: flex;
+            flex-direction: row;
+        }
+
+        button{
+            background-color: #FAF7F0;
+            width: 121px;
+            height: 96px;
+
+            border-radius: 5px;
+            margin: 2px;
+
+            font-size: large;
+
+            z-index: 1;
+        }
+
+        #clear{
+            width:1503%;
+
+            z-index: 3;
+        }
+
+        /* 
+        .empty{
+            visibility: hidden;
+            z-index: -9;
+        } */
+    </style>
+</head>
+<body>
+    <div id="main-container">
+
+
+
+
+        <div id="display-area"><!-- 0000000000000000000000000000000 --></div>
+
+
+
+
+        <div id="button-area">
+
+
+            <div id="row1">
+                <div>
+                    <button type="button" id="clear" onclick="clearB()">C</button>
+                </div>
+                <!-- <div>
+                    <button type="button" id="pos-neg" class="empty">'</button>
+                </div>
+                <div>
+                    <button type="button" id="percentage" class="empty">'</button>
+                </div> -->
+            </div>
+            
+            
+            <div id="row2">
+                <div>
+                    <button type="button" id="7" onclick="display('7')">7</button>
+                </div>
+                <div>
+                    <button type="button" id="8" onclick="display('8')">8</button>
+                </div>
+                <div>
+                    <button type="button" id="9" onclick="display('9')">9</button>
+                </div>
+                <div>
+                    <button type="button" id="division" onclick="display('/')">&divide;</button>
+                </div>
+            </div>
+
+
+            <div id="row3">
+                <div>
+                    <button type="button" id="4" onclick="display('4')">4</button>
+                </div>
+                <div>
+                    <button type="button" id="5" onclick="display('5')">5</button>
+                </div>
+                <div>
+                    <button type="button" id="6" onclick="display('6')">6</button>
+                </div>
+                <div>
+                    <button type="button" id="multiplication" onclick="display('*')">&times;</button>
+                </div>
+            </div>
+
+
+            <div id="row4">
+                <div>
+                    <button type="button" id="1" onclick="display('1')">1</button>
+                </div>
+                <div>
+                    <button type="button" id="2" onclick="display('2')">2</button>
+                </div>
+                <div>
+                    <button type="button" id="3" onclick="display('3')">3</button>
+                </div>
+                <div>
+                    <button type="button" id="subtraction" onclick="display('-')">-</button>
+                </div>
+            </div>
+
+
+            <div id="row5">
+                <div>
+                    <button type="button" id="0" onclick="display('0')">0</button>
+                </div>
+                <div>
+                    <button type="button" id="decimal" onclick="display('.')">.</button>
+                </div>
+                <div>
+                    <button type="button" id="equal" onclick="solve()">=</button>
+                </div>
+                <div>
+                    <button type="button" id="addition" onclick="display('+')">+</button>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+    <script>
+        const disp = document.getElementById("display-area")
+        const arr1 = [""]
+        arr1.splice(0,1)
+        
+
+        function display(valueOf){
+            arr1.push(valueOf)
+            let space = arr1.join('')
+            document.getElementById("display-area").innerHTML=space;
+            
+            //console.log(space)
+        }
+
+
+        function solve(){
+            let space = arr1.join('')
+            let sString = space.toString()
+            let answer = Function("return " + sString)()
+
+            document.getElementById("display-area").innerHTML = answer;
+            console.log(answer)
+
+            var arrlength = arr1.length
+            arr1.splice(0,arrlength)  
+            
+            arr1[0] = answer
+        }
+
+
+        function clearB(){
+            space = ""
+            var arrlength = arr1.length
+            arr1.splice(0,arrlength)            
+
+            document.getElementById("display-area").innerHTML=space;
+            console.log("Cleared")
+        }
+    </script>
+</body>
+</html>
